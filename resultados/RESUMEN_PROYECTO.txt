@@ -1,0 +1,203 @@
+RESUMEN EJECUTIVO DEL PROYECTO
+Análisis de viabilidad de expansión de Costco en México
+Autor: Hugo Cuellar
+Fecha: 24/08/2026
+
+======================================================================
+1. QUE TENEMOS AHORA
+======================================================================
+
+El proyecto tiene un repositorio de GitHub llamado costco-expansion-analysis,
+con carpetas para datos, notebooks, scripts y resultados.
+
+El notebook 01_exploracion_datos.ipynb tiene actualmente 11 celdas:
+
+1. Celda Markdown de título
+   Presenta el tema del proyecto: la exploración de datos ENIGH 2022 para
+   Monterrey, Guadalajara y Querétaro.
+
+2. Exploración básica de hogares
+   Carga los datos procesados de hogares y muestra su tamaño, primeras filas,
+   nombres de columnas, estadísticas, valores faltantes y distribución
+   geográfica. También identifica columnas relacionadas con ingresos, gastos
+   y trabajo.
+
+3. Exploración de la tabla de ingresos
+   Carga la tabla principal de ingresos de ENIGH y muestra su tamaño,
+   columnas, primeras filas y estadísticas descriptivas.
+
+4. Cálculo de ingresos por hogar
+   Suma los ingresos de los seis periodos disponibles para cada hogar y crea
+   la variable ingreso_total. Guarda el resultado en ingresos_por_hogar.csv.
+
+5. Unión de hogares e ingresos
+   Combina la información de hogares con el ingreso total usando las claves
+   de vivienda y hogar. Guarda la tabla resultante como datos_modelo.csv.
+
+6. Modelo profesional inicial
+   Estima una regresión para explicar el logaritmo del ingreso usando estrato,
+   tamaño de localidad y diferencias entre estados. Nuevo León se utiliza como
+   categoría de comparación.
+
+7. Versión antigua del modelo
+   Es una versión anterior que incluía las tres variables de estado al mismo
+   tiempo. Se conserva como registro histórico, pero no debe utilizarse para
+   el análisis final porque puede producir multicolinealidad.
+
+8. Otra versión anterior del modelo
+   Repite una especificación antigua y contiene una importación que no es
+   necesaria para el análisis final.
+
+9. Coeficientes del modelo
+   Muestra coeficientes, valores p e intervalos de confianza de la versión de
+   modelo que esté activa en la sesión del notebook.
+
+10. Reporte completo de la Fase 1
+    Une los datos, limpia los registros, crea variables, estima el modelo OLS,
+    presenta indicadores de calidad, limitaciones y una recomendación
+    preliminar. También guarda datos_modelo_final.csv y modelo_resumen.txt.
+
+11. Visualización
+    Genera un panel con ingresos por estado, estrato frente a ingreso,
+    distribución de ingresos y valores observados frente a predichos. Guarda
+    la imagen exploracion_modelo.png.
+
+Archivos principales generados:
+- requirements.txt: librerías necesarias para Python.
+- README.md: descripción, objetivo, fuentes y estructura del proyecto.
+- data/processed/enigh_monterrey_guadalajara_queretaro.csv: hogares de los
+  tres estados seleccionados.
+- data/processed/ingresos_por_hogar.csv: ingresos acumulados por hogar.
+- data/processed/datos_modelo.csv: hogares unidos con el ingreso total.
+- data/processed/datos_modelo_final.csv: datos usados por el modelo final.
+- resultados/modelo_resultado.txt: resumen de una estimación anterior.
+- resultados/modelo_resumen.txt: resumen del modelo de la Fase 1.
+- resultados/graficos/exploracion_modelo.png: panel de gráficos.
+- notebooks/01_exploracion_datos.ipynb: notebook de análisis.
+- notebooks/01_exploracion_datos_BACKUP.ipynb: copia de seguridad del
+  notebook antes de una limpieza anterior.
+
+======================================================================
+2. QUE ELIMINAMOS
+======================================================================
+
+Durante el trabajo se eliminaron versiones que tenían problemas o estaban
+superadas por una especificación más correcta. En particular, se borró una
+celda que incluía simultáneamente las tres variables indicadoras de estado:
+Nuevo León, Jalisco y Querétaro.
+
+El problema original era que se incluían todas las categorías de estado junto
+con una constante. Eso hace que una variable pueda reconstruirse a partir de
+las otras, lo que dificulta separar el efecto de cada estado y puede producir
+resultados inestables o valores absurdos.
+
+También se eliminaron versiones duplicadas cuando se hizo una limpieza
+anterior. Sin embargo, el estado actual del notebook muestra que algunas
+versiones históricas volvieron a aparecer después de cambios posteriores.
+Por eso el notebook actual tiene 11 celdas y todavía no es la versión mínima
+ideal de tres celdas.
+
+======================================================================
+3. QUE AGREGAMOS
+======================================================================
+
+Se agregaron y probaron varias piezas importantes:
+
+- Una tabla de ingresos por hogar, sumando los ingresos de los seis periodos.
+- Una tabla unida para el modelo, conectando hogares e ingresos mediante las
+  claves folioviv y foliohog.
+- Una especificación corregida del modelo en la que Nuevo León es la categoría
+  base y Jalisco y Querétaro se comparan contra él.
+- Un reporte profesional de la Fase 1 con información de la muestra,
+  distribución por entidad, calidad del modelo, limitaciones y recomendación.
+- Una celda de coeficientes, valores p e intervalos de confianza.
+- Una celda de gráficos para observar diferencias de ingresos y el ajuste del
+  modelo.
+- Una copia de seguridad del notebook antes de la limpieza.
+
+======================================================================
+4. DONDE ESTAMOS AHORA: PROGRESO
+======================================================================
+
+Completado:
+- Repositorio de GitHub creado y sincronizado.
+- Estructura de carpetas creada.
+- Librerías de Python instaladas.
+- Datos ENIGH 2022 descargados y extraídos.
+- Datos filtrados para Jalisco, Nuevo León y Querétaro.
+- Datos de ingresos agregados por hogar.
+- Tabla de hogares e ingresos unida.
+- Modelo econométrico OLS estimado.
+- Gráficos exploratorios generados.
+- Resultados y tablas procesadas guardados en el proyecto.
+
+Estado del modelo actual:
+- Se usaron 10,052 hogares.
+- El R-cuadrado fue aproximadamente 0.0989, es decir, el modelo explica cerca
+  del 9.89 por ciento de la variación observada en el logaritmo del ingreso.
+- El estrato socioeconómico fue la variable con relación más clara con el
+  ingreso dentro de esta especificación.
+- Las diferencias entre Jalisco, Nuevo León y Querétaro no fueron concluyentes
+  por sí solas.
+
+Pendiente:
+- Limpiar definitivamente el notebook y conservar una sola versión final del
+  modelo, además de la exploración que se quiera mantener.
+- Revisar el modelo con errores estándar apropiados para datos de encuesta.
+- Incorporar factores de expansión de ENIGH cuando corresponda.
+- Agregar variables de PIB regional, crecimiento, competencia, densidad
+  comercial, salarios y costos de terreno.
+- Desarrollar la Fase 2 de contabilidad social.
+- Desarrollar la Fase 3 de análisis financiero con VAN, TIR y rentabilidad.
+
+Próximos pasos recomendados:
+1. Dejar una única celda final de modelado y documentar la especificación.
+2. Revisar la calidad estadística y económica de las variables.
+3. Incorporar información regional y comercial.
+4. Construir una comparación final entre las tres ciudades.
+5. Preparar el reporte final de viabilidad.
+
+======================================================================
+5. QUE SIGNIFICA EL MODELO ECONOMETRICO
+======================================================================
+
+El modelo intenta responder una pregunta sencilla: qué características de un
+hogar se relacionan con un mayor nivel de ingreso y, por tanto, con una mayor
+capacidad potencial de consumir en una tienda como Costco.
+
+Para hacerlo, compara muchos hogares al mismo tiempo. Observa su ingreso, su
+estrato socioeconómico, el tamaño de la localidad donde viven y el estado al
+que pertenecen.
+
+El modelo transforma el ingreso para que los valores extremadamente altos no
+dominen por completo la comparación. Después calcula la relación promedio
+entre el ingreso y las características seleccionadas.
+
+Nuevo León funciona como punto de referencia. El resultado de Jalisco indica
+si, manteniendo constantes las demás variables, sus hogares presentan un
+nivel de ingreso diferente al de Nuevo León. Querétaro se interpreta de la
+misma manera.
+
+El R-cuadrado cercano a 9.89 por ciento significa que las variables incluidas
+explican solo una parte pequeña de las diferencias de ingreso entre hogares.
+No significa que el modelo sea inútil; indica que todavía faltan factores
+importantes.
+
+El estrato socioeconómico sí aparece como una señal importante. En términos
+simples, los hogares de estratos más altos tienden a mostrar mayores ingresos.
+Esto es relevante para Costco porque su demanda potencial depende de que
+exista una base de consumidores con capacidad de compra.
+
+Pero el modelo no puede decidir por sí solo cuál ciudad es la mejor. No conoce
+todavía costos de terrenos, competencia, tráfico, crecimiento regional,
+ubicación de clientes, empleo, impuestos ni rentabilidad de una sucursal.
+Por eso la conclusión correcta es preliminar: el estrato ayuda a identificar
+el tipo de hogar objetivo, pero hacen falta más datos para elegir la ciudad.
+
+CONCLUSION EJECUTIVA
+
+La Fase 1 está completada como exploración y primera estimación econométrica.
+El proyecto ya tiene datos, tablas procesadas, un modelo funcional y gráficos.
+La principal tarea técnica pendiente es depurar las versiones duplicadas del
+notebook y enriquecer el análisis antes de emitir una recomendación definitiva
+de expansión para Costco.
