@@ -1,0 +1,162 @@
+{
+  "01_exploracion_datos.ipynb": {
+    "celdas_totales": 11,
+    "celdas_codigo": 10,
+    "librerias": [
+      "matplotlib/seaborn",
+      "numpy",
+      "pandas",
+      "sklearn",
+      "statsmodels"
+    ],
+    "datos_entrada": [
+      "conjunto_de_datos_ingresos_enigh2022_ns.csv",
+      "datos_modelo.csv",
+      "enigh_monterrey_guadalajara_queretaro.csv",
+      "ingresos_por_hogar.csv"
+    ],
+    "datos_salida": [
+      "datos_modelo.csv",
+      "datos_modelo_final.csv",
+      "exploracion_modelo.png",
+      "ingresos_por_hogar.csv"
+    ],
+    "analisis": [
+      "Regresión OLS",
+      "Estadísticas descriptivas",
+      "Histogramas",
+      "Gráficos scatter",
+      "Box plots",
+      "Unión de tablas",
+      "Agregaciones por grupos"
+    ],
+    "ruta": "C:\\Users\\hugod\\costco-expansion-analysis\\notebooks\\01_exploracion_datos.ipynb"
+  },
+  "01_exploracion_datos_BACKUP.ipynb": {
+    "celdas_totales": 7,
+    "celdas_codigo": 6,
+    "librerias": [
+      "numpy",
+      "pandas",
+      "sklearn",
+      "statsmodels"
+    ],
+    "datos_entrada": [
+      "conjunto_de_datos_ingresos_enigh2022_ns.csv",
+      "datos_modelo.csv",
+      "enigh_monterrey_guadalajara_queretaro.csv",
+      "ingresos_por_hogar.csv"
+    ],
+    "datos_salida": [
+      "datos_modelo.csv",
+      "ingresos_por_hogar.csv"
+    ],
+    "analisis": [
+      "Regresión OLS",
+      "Estadísticas descriptivas",
+      "Unión de tablas",
+      "Agregaciones por grupos"
+    ],
+    "ruta": "C:\\Users\\hugod\\costco-expansion-analysis\\notebooks\\01_exploracion_datos_BACKUP.ipynb"
+  },
+  "02_modelo_econometrico_final.ipynb": {
+    "celdas_totales": 5,
+    "celdas_codigo": 3,
+    "librerias": [
+      "numpy",
+      "pandas"
+    ],
+    "datos_entrada": [],
+    "datos_salida": [
+      "02_analisis_visual_final.png",
+      "datos_modelo_final_02.csv"
+    ],
+    "analisis": [
+      "Regresión OLS",
+      "Histogramas",
+      "Gráficos scatter",
+      "Box plots",
+      "Agregaciones por grupos"
+    ],
+    "ruta": "C:\\Users\\hugod\\costco-expansion-analysis\\notebooks\\02_modelo_econometrico_final.ipynb"
+  },
+  "03_extraccion_denue.ipynb": {
+    "celdas_totales": 3,
+    "celdas_codigo": 3,
+    "librerias": [
+      "matplotlib/seaborn",
+      "numpy",
+      "pandas",
+      "sklearn",
+      "statsmodels"
+    ],
+    "datos_entrada": [],
+    "datos_salida": [],
+    "analisis": [
+      "Regresión OLS",
+      "Regresión logística",
+      "Estadísticas descriptivas",
+      "Histogramas",
+      "Gráficos scatter",
+      "Box plots",
+      "Unión de tablas",
+      "Agregaciones por grupos"
+    ],
+    "ruta": "C:\\Users\\hugod\\costco-expansion-analysis\\notebooks\\03_extraccion_denue.ipynb"
+  },
+  "03b_inyectar_vehiculos.ipynb": {
+    "celdas_totales": 3,
+    "celdas_codigo": 3,
+    "librerias": [
+      "numpy",
+      "pandas",
+      "sklearn",
+      "statsmodels"
+    ],
+    "datos_entrada": [],
+    "datos_salida": [],
+    "analisis": [
+      "Regresión logística",
+      "Unión de tablas",
+      "Agregaciones por grupos"
+    ],
+    "ruta": "C:\\Users\\hugod\\costco-expansion-analysis\\notebooks\\03b_inyectar_vehiculos.ipynb"
+  },
+  "04_modelo_logit.ipynb": {
+    "celdas_totales": 2,
+    "celdas_codigo": 2,
+    "librerias": [
+      "matplotlib/seaborn",
+      "numpy",
+      "pandas",
+      "sklearn",
+      "statsmodels"
+    ],
+    "datos_entrada": [],
+    "datos_salida": [],
+    "analisis": [
+      "Regresión OLS",
+      "Regresión logística",
+      "Estadísticas descriptivas",
+      "Histogramas",
+      "Gráficos scatter",
+      "Box plots",
+      "Unión de tablas",
+      "Agregaciones por grupos"
+    ],
+    "ruta": "C:\\Users\\hugod\\costco-expansion-analysis\\notebooks\\04_modelo_logit.ipynb"
+  },
+  "Untitled-1.ipynb": {
+    "celdas_totales": 2,
+    "celdas_codigo": 2,
+    "librerias": [
+      "pandas"
+    ],
+    "datos_entrada": [],
+    "datos_salida": [],
+    "analisis": [
+      "Agregaciones por grupos"
+    ],
+    "ruta": "C:\\Users\\hugod\\costco-expansion-analysis\\notebooks\\Untitled-1.ipynb"
+  }
+}
