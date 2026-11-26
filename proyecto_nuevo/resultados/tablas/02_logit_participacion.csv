@@ -1,0 +1,9 @@
+,coeficiente,error estándar (cluster upm),p-valor,razón de momios,efecto marginal (puntos %)
+Automóvil,0.9969,0.048,0.0,2.7098,6.2864
+Internet,0.753,0.0616,0.0,2.1233,4.4287
+Computadora,0.7615,0.0411,0.0,2.1415,5.3648
+Microondas,0.4012,0.0432,0.0,1.4937,2.6725
+Lavadora,0.4527,0.0613,0.0,1.5725,2.7911
+TV de paga,0.3093,0.039,0.0,1.3624,2.1179
+Tamaño del hogar,-0.053,0.0121,0.0,0.9483,-0.3662
+Localidad ≥100 mil hab.,0.6025,0.0482,0.0,1.8267,3.9797

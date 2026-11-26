@@ -1,0 +1,10 @@
+,coeficiente (pesos/año),error estándar,p-valor
+Constante,-1074.86,163.016,0.0
+Automóvil,1695.783,151.054,0.0
+Internet,-74.241,126.346,0.557
+Computadora,2709.403,337.076,0.0
+Microondas,817.695,134.097,0.0
+Lavadora,56.874,59.372,0.338
+TV de paga,1099.781,240.762,0.0
+Tamaño del hogar,-13.498,26.358,0.609
+Localidad ≥100 mil hab.,1034.715,188.134,0.0

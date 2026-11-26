@@ -1,0 +1,9 @@
+,coeficiente,error estándar,p-valor,cambio % en gasto
+Automóvil,0.4062,0.0692,0.0,50.1135
+Internet,0.1106,0.0838,0.1871,11.6905
+Computadora,0.3887,0.0655,0.0,47.5133
+Microondas,0.2179,0.0654,0.0009,24.3438
+Lavadora,0.2552,0.0751,0.0007,29.0737
+TV de paga,0.2149,0.0726,0.0031,23.9695
+Tamaño del hogar,0.0239,0.013,0.0649,2.4224
+Localidad ≥100 mil hab.,0.1512,0.0665,0.023,16.3257

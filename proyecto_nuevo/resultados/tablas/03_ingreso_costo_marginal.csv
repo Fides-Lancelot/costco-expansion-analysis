@@ -1,0 +1,7 @@
+escenario,zona,ingreso_marginal,costo_mercancía,costo_operación,costo_capital_anualizado (CAE),costo_marginal_total,beneficio_marginal_antes_imp
+A,Guadalajara,2577.2,2267.0,198.6,171.8,2637.4,-60.2
+A,Monterrey,1415.8,1245.4,167.3,171.8,1584.5,-168.7
+A,Querétaro,957.2,842.0,147.6,171.8,1161.3,-204.1
+B,Guadalajara,2397.8,2109.2,195.2,171.8,2476.1,-78.4
+B,Monterrey,1008.7,887.3,119.2,171.8,1178.3,-169.6
+B,Querétaro,2189.8,1926.3,188.7,171.8,2286.7,-96.9
