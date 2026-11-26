@@ -412,7 +412,9 @@ h += [P("7. Oferta actual y demanda no atendida", "h1"),
       *notas(),
       porque("tratar a City Club como un Sam's probablemente <b>sobreestima</b> la competencia, porque sus clubes son más "
              "pequeños. Preferimos errar hacia el lado conservador: si aun así una zona tiene demanda sin atender, el "
-             "resultado es más confiable."),
+             "resultado es más confiable. Pero no es un supuesto neutral: Monterrey tiene 5 City Club y las otras zonas "
+             "1 cada una, así que este supuesto castiga sobre todo a Monterrey. La sección 8.5 muestra qué pasa si "
+             "City Club vende la mitad o nada."),
       *bloque_brecha(),
       P("Dos escenarios: por qué hay un A y un B", "h2"),
       P("El <b>escenario A</b> usa solo el perfil de los hogares. El <b>escenario B</b> agrega un efecto propio de cada "
@@ -522,6 +524,15 @@ h += [PageBreak(), P("8. Evaluación financiera", "h1"),
         "(−1,224) queda por encima de Guadalajara (−1,299). En ambas pruebas las tres zonas tienen VPN negativo con la "
         "inversión base, así que ninguna cambia la recomendación."),
       *notas(),
+      P("<b>Supuesto de City Club.</b> Repetimos todo con City Club vendiendo la mitad de un Sam's y con City Club en "
+        "cero. Este supuesto sí cambia el orden en algunos casos: con City Club a la mitad, Querétaro en el escenario B "
+        "justifica 63 mdd de inversión contra 58 de Guadalajara, y con City Club en cero Monterrey en el escenario A "
+        "llega a 59 mdd, casi igual que Guadalajara. Pero Guadalajara es la <b>única zona que justifica una inversión "
+        f"positiva en las seis combinaciones</b> (tres supuestos de City Club por dos escenarios){N('Inversión máxima con VPN igual a cero, en mdd. Guadalajara: entre 48 y 58 en las seis combinaciones. Querétaro: entre −29 y 63. Monterrey: entre −14 y 59. El peor caso de Guadalajara (48) es mejor que el peor caso de las otras dos, que es negativo. Tabla 03_sensibilidad_cityclub.csv del notebook 03.')}: "
+        "su peor caso es 48 mdd, y el de las otras dos es negativo. Con un criterio robusto, que elige la opción con el "
+        "mejor peor caso, la recomendación se mantiene. Lo que cambia es el mensaje: Guadalajara no gana en todos los "
+        "casos, gana en el sentido de que es la apuesta que menos puede salir mal."),
+      *notas(),
       P("8.6 Fuentes de financiamiento", "h2"),
       tabla([["Opción", "Costo antes de impuestos", f"Costo después de impuestos{N('Los intereses de una deuda se pueden deducir de impuestos (escudo fiscal): con un ISR de 30%, pagar 7.55% de interés cuesta en realidad 5.29%. Los recursos propios no tienen ese beneficio, por eso su costo no cambia.')}",
               f"Riesgo cambiario{N('Riesgo de que el peso se deprecie: si Costco se endeuda en dólares y sus ingresos son en pesos, cada peso vale menos dólares para pagar la deuda. El 6.57% del bono en dólares ya incluye la depreciación esperada, pero no la inesperada.')}"]] +
@@ -551,7 +562,7 @@ h += [PageBreak(), P("9. Lo que no se hizo y las limitaciones", "h1"),
              ["Precio del terreno por ciudad", "No encontramos una fuente pública verificable",
               "Por eso la decisión se expresa como inversión máxima, no como un solo VPN"],
              ["Márgenes de Costco México", "Costco no los publica por separado", "Usamos el segmento Other International"],
-             ["Ventas de City Club", "Soriana no las publica", "Tratarlo como un Sam's sobreestima la competencia (conservador)"],
+             ["Ventas de City Club", "Soriana no las publica", "Tratarlo como un Sam's; la sección 8.5 muestra que el orden entre zonas cambia en algunos casos, pero Guadalajara tiene el mejor peor caso"],
              ["Rendimiento del Bono M a 10 años", "La página de Banxico no lo mostraba de forma verificable",
               "El WACC se construyó en dólares y se pasó a pesos con Fisher"],
              ["Separar preferencia de oferta en el efecto estatal", "La ENIGH no dice a qué distancia está el club más cercano",

@@ -224,8 +224,11 @@ h += [P("1. Resumen ejecutivo", "h1"),
               "2.5 en promedio"]],
             [6.4, 3.6, 3.4, 3.6], resaltar=[]),
       *notas(),
-      P("<b>Conclusión.</b> Guadalajara es la única zona con demanda sin atender en los dos escenarios y la mejor en "
-        "todos los indicadores financieros. La decisión depende tanto del lugar como del monto: con una inversión como la "
+      P("<b>Conclusión.</b> Con los supuestos base, Guadalajara es la única zona con demanda sin atender en los dos "
+        "escenarios y la mejor en todos los indicadores financieros. Cuando cambiamos el supuesto más incierto de la "
+        "oferta (cuánto vende un City Club), Querétaro o Monterrey pueden superarla en algún escenario, pero Guadalajara "
+        "es la única zona que justifica una inversión positiva en todas las combinaciones: es la opción con el mejor "
+        "peor caso. La decisión depende tanto del lugar como del monto: con una inversión como la "
         "de Escobedo (unos 100 mdd) ninguna zona crea valor, así que la tienda debe ser de formato estándar. Los factores "
         "no numéricos apuntan en la misma dirección: el director de finanzas de Costco México dijo en octubre de 2025 que "
         "Guadalajara todavía tiene espacio para otra tienda, el oriente de la ciudad no tiene ningún club de precio, y "
@@ -292,7 +295,8 @@ h += [P("2. Perfil de la empresa", "h1"),
       P("<b>Rentabilidad del segmento que incluye a México.</b> Costco no publica a México por separado. Su segmento "
         "<i>Other International</i>, que incluye México, tuvo en FY2025 ingresos de 38,266 mdd y un margen de operación "
         "de 4.3% (Annual Report FY2025, nota 11). De ahí tomamos los márgenes del flujo de efectivo: margen bruto de "
-        "12.03%, gastos de operación de 6.83% y mantenimiento de 0.88% de las ventas" + N(
+        "12.03% sobre el ingreso total (que en los reportes de Costco ya incluye las cuotas de membresía), gastos de "
+        "operación de 6.83% y mantenimiento de 0.88% de las ventas" + N(
             "Margen bruto: lo que queda de cada peso vendido después de pagar la mercancía. Gastos de operación: "
             "sueldos, renta, luz y demás gastos de la tienda. Mantenimiento: inversión necesaria para conservar la "
             "tienda en buen estado. Todos como porcentaje de las ventas.") + "."),
@@ -500,6 +504,21 @@ def bloque_vpn():
               "es cero.", "nota")]
 
 
+def bloque_cityclub():
+    cc = pd.read_csv(T / "03_sensibilidad_cityclub.csv")
+    filas = [["Zona, escenario", "City Club = Sam's (base)", "City Club = mitad", "City Club = 0",
+              "Peor caso" + N("El menor de los tres valores de la fila: la inversión máxima si el supuesto de City Club "
+                              "resultara el más desfavorable para esa zona y escenario.")]]
+    for z in ["Guadalajara", "Querétaro", "Monterrey"]:
+        for e in ["A", "B"]:
+            vals = [cc[(cc.zona == z) & (cc.escenario == e) & (cc.city_club_vs_sams == f)].capex_max_mdd.iloc[0]
+                    for f in (1.0, 0.5, 0.0)]
+            filas.append([f"{z}, {e}"] + [fmt(x) for x in vals] + [f"<b>{fmt(min(vals))}</b>"])
+    return [tabla(filas, [3.6, 3.6, 3.2, 3.0, 3.6], resaltar=[1, 2]),
+            P("Millones de dólares. Negativo = la zona no justifica ni una inversión de cero. Fuente: notebook 03, "
+              "tabla 03_sensibilidad_cityclub.csv.", "nota")]
+
+
 h += [P("4.4 Ingreso marginal y canibalización", "h2"),
       P("Una tienda nueva le quita ventas a los Costcos que ya existen en la zona. Lo que importa para la decisión no es "
         "cuánto vende la tienda, sino cuánto más vende Costco en total: el ingreso marginal."),
@@ -608,7 +627,23 @@ h += [P("4.9 Sensibilidad", "h2"),
         "base, así que no cambian la recomendación, pero sí confirman que Querétaro es la segunda opción si su demanda "
         "resulta mayor de lo estimado."),
       *notas(),
-      P("4.10 Comparación cualitativa", "h2"),
+      P("4.10 Sensibilidad al supuesto de City Club", "h2"),
+      P("City Club (Soriana) no publica ventas por club; en el caso base suponemos que vende lo mismo que un Sam's. "
+        "El supuesto pesa distinto en cada zona: Monterrey tiene 5 City Club y las otras dos, 1 cada una. Repetimos "
+        "todo el análisis con City Club a la mitad de un Sam's y en cero. Inversión máxima con VPN = 0, en mdd:"),
+      *bloque_cityclub(), *notas(),
+      P("<b>Lectura.</b> El supuesto sí importa. Con City Club a la mitad, Querétaro en el escenario B supera a "
+        "Guadalajara (63 contra 58 mdd), porque su demanda sin atender alcanza para una tienda completa sin "
+        "canibalizar. Con City Club en cero, Monterrey en el escenario A empata con Guadalajara. Pero Guadalajara es la "
+        "única zona con inversión máxima positiva en las seis combinaciones. Con un criterio de decisión robusto, que "
+        "elige la opción con el mejor peor caso" + N(
+            "Criterio maximin: cuando no se sabe cuál supuesto es el correcto, se compara el peor resultado posible de "
+            "cada opción y se elige la que tiene el peor resultado menos malo. Es adecuado aquí porque el dato que "
+            "falta (ventas de City Club) no se puede obtener de fuentes públicas.") +
+        ", Guadalajara sigue siendo la recomendación. Querétaro es una alternativa seria si se confirma que City Club "
+        "vende poco y que su consumo por hogar es alto."),
+      *notas(),
+      P("4.11 Comparación cualitativa", "h2"),
       tabla([["Factor", "Guadalajara", "Querétaro", "Monterrey"],
              ["Señal de la empresa", "El director de finanzas de Costco México dijo en oct-2025 que la ciudad \"still has "
                                      "room for another one\"", "Corregidora abre en dic-2026: plaza recién atendida",
@@ -623,7 +658,7 @@ h += [P("4.9 Sensibilidad", "h2"),
               "10 Sam's Club y 5 City Club"]], [3.4, 4.8, 4.2, 4.6]),
       P("Fuentes: Mexico News Daily (20-oct-2025 y 3-sep-2025); INEGI, Censos 2010 y 2020; DENUE abril 2026. Seguridad "
         "y logística (distancia a centros de distribución) no se evaluaron y quedan como pendientes.", "nota"),
-      P("4.11 Matriz de decisión", "h2"),
+      P("4.12 Matriz de decisión", "h2"),
       tabla([["Indicador (lugar: 1 = mejor)", "Guadalajara", "Querétaro", "Monterrey"],
              ["VPN, A / B", "1 / 1", "3 / 2", "2 / 3"],
              ["TIR, A / B", "1 / 1", "n.d. / 2", "2 / 3"],
@@ -648,8 +683,9 @@ h += [P("5. Conclusiones", "h1"),
              "Monterrey no justifica ninguna. Con una tienda como Escobedo (100 mdd) ninguna zona crea valor: la "
              "decisión es tanto dónde como cuánto gastar.",
              "<b>Robustez.</b> Guadalajara queda primera en 10 de las 12 pruebas de sensibilidad y en los 10 "
-             "indicadores de la matriz de decisión. Las dos excepciones (demanda ±20%) ocurren con VPN negativo para "
-             "las tres zonas.",
+             "indicadores de la matriz de decisión. Si City Club vende menos de lo supuesto, Querétaro (escenario B) o "
+             "Monterrey (escenario A) pueden superarla, pero Guadalajara es la única zona que justifica una inversión "
+             "positiva en las seis combinaciones: su peor caso es 48 mdd y el de las otras dos es negativo.",
              "<b>Financiamiento.</b> Recursos propios como fuente principal; crédito en pesos (5.29% después de "
              "impuestos) solo como cobertura cambiaria; no conviene el bono en dólares por el riesgo cambiario."]),
       P("5.2 Factores no matemáticos", "h2"),
@@ -669,6 +705,8 @@ h += [P("5. Conclusiones", "h1"),
              "El modelo usa la ENIGH 2022 y una calibración de 4.0 veces al tamaño real de la industria. La calibración "
              "es igual para las tres zonas, así que no cambia el orden, pero sí el nivel del VPN.",
              "Los márgenes son del segmento Other International, no de México por separado.",
+             "City Club no publica ventas. Si vende bastante menos que un Sam's, Querétaro se vuelve tan atractiva como "
+             "Guadalajara en el escenario B; conviene buscar un dato de Soriana antes de la decisión final.",
              "Seguridad, logística y disponibilidad de terrenos no se evaluaron con datos."]),
       KeepTogether([P("5.4 Siguientes pasos", "h2"),
       lista(["Cotizar terrenos en arrendamiento en Tonalá y en sus límites con Tlaquepaque y Guadalajara.",
@@ -692,9 +730,9 @@ h += [P("6. Presentación ejecutiva", "h1"),
              ["4:30–7:00", "Finanzas", "WACC 11.34%; Guadalajara es la única con VPN positivo en A y B; la inversión "
                                        "máxima es 48 a 58 mdd", "Tabla de VPN y gráfica de inversión máxima"],
              ["7:00–8:00", "Financiamiento y riesgo", "Recursos propios; crédito en pesos como cobertura; sensibilidad",
-              "Tabla 4.8 y tabla de sensibilidad"],
+              "Tabla 4.8 y tablas 4.9 y 4.10 (sensibilidad)"],
              ["8:00–9:00", "Factores no numéricos", "La empresa ya dijo que Guadalajara tiene espacio; Tonalá no tiene "
-                                                    "clubes; riesgo de agua en las otras dos", "Tabla 4.10"],
+                                                    "clubes; riesgo de agua en las otras dos", "Tabla 4.11"],
              ["9:00–10:00", "Cierre", "Dónde, cuánto y cómo financiar; Querétaro como siguiente plaza",
               "Recuadro de conclusiones"]], [2.0, 2.8, 6.8, 5.4]),
       P("6.1 Preguntas probables y cómo responderlas", "h2"),
@@ -712,6 +750,12 @@ h += [P("6. Presentación ejecutiva", "h1"),
                                                                        "peso borraría la ventaja de 0.69 puntos."],
              ["¿Por qué contar Corregidora si no ha abierto?", "Abre en diciembre de 2026, antes que la tienda evaluada; "
                                                               "ignorarla inflaría la demanda de Querétaro."],
+             ["Si Monterrey destruye valor, ¿por qué Costco acaba de abrir Escobedo?",
+              "Escobedo ya está en la oferta que medimos: evaluamos una tienda más después de ella. Además, si City Club "
+              "vende menos de lo supuesto, Monterrey mejora mucho (tabla 4.10)."],
+             ["¿Qué tan sensible es el resultado a City Club?",
+              "Mucho para Querétaro y Monterrey, poco para Guadalajara: es la única con inversión máxima positiva en "
+              "todos los casos (48 a 58 mdd)."],
              ["¿Por qué 20 años?", "Es el horizonte de expansión de Costco en México; lo que sigue se captura con el valor "
                                    "terminal al 3%."]], [6.0, 11.0]),
       P("Recomendaciones de forma: una idea por diapositiva, cifras redondeadas, ensayar con reloj y repartir los bloques "
@@ -732,8 +776,8 @@ h += [P("Anexo A. Lista de verificación contra la rúbrica", "h1"),
               "Damodaran, con fecha"],
              ["4. Comparación", "Valor del dinero en el tiempo, anualidades, bonos, VPN, TIR, tipo de cambio para elegir "
                                 "la mejor opción", "4.1 WACC; 4.2 tipo de cambio; 4.5 VPN, TIR, IR y recuperación; 4.6 "
-                                                   "anualidades; 4.7 bonos; 4.8 fuentes; 4.9 sensibilidad; 4.10 "
-                                                   "cualitativa; 4.11 matriz"],
+                                                   "anualidades; 4.7 bonos; 4.8 fuentes; 4.9 y 4.10 sensibilidad; "
+                                                   "4.11 cualitativa; 4.12 matriz"],
              ["5. Conclusiones", "Derivadas del análisis, con factores cuantitativos y no matemáticos",
               "5.1 cuantitativos; 5.2 no matemáticos; 5.3 riesgos; 5.4 siguientes pasos"],
              ["6. Presentación", "Profesional, clara, dentro del tiempo y con dominio del tema",
@@ -742,8 +786,8 @@ h += [P("Anexo A. Lista de verificación contra la rúbrica", "h1"),
       tabla([["Supuesto", "Valor", "Por qué"],
              ["Calibración de la ENIGH a ventas reales", "4.0 veces", "La ENIGH solo capta hogares y subdeclara gasto; "
                                                                       "igual para las tres zonas"],
-             ["Venta de City Club por club", "Igual a un Sam's", "Sin cifras públicas; sobreestima la competencia "
-                                                                 "(conservador)"],
+             ["Venta de City Club por club", "Igual a un Sam's", "Sin cifras públicas; la tabla 4.10 prueba la mitad y "
+                                                                 "cero"],
              ["Corregidora", "Abierta", "Abre en dic-2026, antes de la tienda evaluada"],
              ["Crecimiento de hogares", "Mitad del ritmo 2010-2020 (años 1-10), un cuarto (11-20)",
               "No hay proyecciones municipales de CONAPO descargables"],
