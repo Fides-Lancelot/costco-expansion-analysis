@@ -45,7 +45,9 @@ Este hallazgo coincide con una fuente externa: en octubre de 2025 el director de
 
 ## Checklist contra la rúbrica (Finanzas Corporativas, 30 puntos)
 
-Metodología explicada (qué se hizo, cómo y por qué): `resultados/Metodologia_modelo_Costco.pdf`, generado con `python src/generar_pdf_metodologia.py`.
+Documento de entrega, organizado criterio por criterio: `resultados/Reporte_final_Costco.pdf`, generado con `python src/generar_reporte_final.py` (el anexo A ubica cada criterio de la rúbrica dentro del documento).
+
+Metodología explicada (qué se hizo, cómo y por qué, con glosario): `resultados/Metodologia_modelo_Costco.pdf`, generado con `python src/generar_pdf_metodologia.py`.
 
 Documento final: https://claude.ai/artifact/CG5PKPgNS4A5dnE1cVsKwd · Presentación (12 diapositivas): https://claude.ai/artifact/1XyRncHhw34xivxe8LCD7H
 

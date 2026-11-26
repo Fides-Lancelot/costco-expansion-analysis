@@ -517,8 +517,10 @@ h += [PageBreak(), P("8. Evaluación financiera", "h1"),
       P("Movimos cada supuesto y recalculamos el VPN del escenario B con la inversión base. Lo que más pesa es la demanda "
         f"(±20% mueve el VPN de Guadalajara entre {sens.loc['Demanda −20%', 'Guadalajara']:,.0f} y "
         f"{sens.loc['Demanda +20%', 'Guadalajara']:,.0f} millones{N('Con la inversión base (67.9 mdd) el VPN de Guadalajara B es −354 mdp. Si la demanda real fuera 20% menor que la estimada, bajaría a −1,299; si fuera 20% mayor, subiría a −176. Que siga negativo confirma que, con esa inversión, la tienda no se paga; con una más barata sí.')}) "
-        "y la inversión. Guadalajara supera a Querétaro en las 12 pruebas; Monterrey solo sube de lugar con 20% menos "
-        "demanda, prueba en la que las tres zonas pierden valor."),
+        "y la inversión. Guadalajara queda primera en 10 de las 12 pruebas. Las dos excepciones son los cambios de "
+        "demanda: con 20% más demanda Querétaro (−80) queda por encima de Guadalajara (−176), y con 20% menos Monterrey "
+        "(−1,224) queda por encima de Guadalajara (−1,299). En ambas pruebas las tres zonas tienen VPN negativo con la "
+        "inversión base, así que ninguna cambia la recomendación."),
       *notas(),
       P("8.6 Fuentes de financiamiento", "h2"),
       tabla([["Opción", "Costo antes de impuestos", f"Costo después de impuestos{N('Los intereses de una deuda se pueden deducir de impuestos (escudo fiscal): con un ISR de 30%, pagar 7.55% de interés cuesta en realidad 5.29%. Los recursos propios no tienen ese beneficio, por eso su costo no cambia.')}",
