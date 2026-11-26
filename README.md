@@ -1,13 +1,12 @@
-<<<<<<< HEAD
 # Análisis de Viabilidad de Expansión de Costco en México
 
 ## Objetivo
-Determinar la mejor ubicación para la próxima sucursal de Costco en México mediante análisis econométrico y financiero integrado.
+Determinar la localización espacial óptima de la próxima sucursal de Costco en México mediante un **modelo econométrico de predicción de demanda**, integrado con análisis de oferta y competencia.
 
 ## Ciudades analizadas
-- **Monterrey** — Hub industrial, alto ingreso per cápita
-- **Guadalajara** — Crecimiento demográfico acelerado, clase media emergente
-- **Querétaro** — Boom industrial, crecimiento más rápido de México
+- **Monterrey**: hub industrial, alto ingreso per cápita
+- **Guadalajara**: crecimiento demográfico acelerado, clase media emergente
+- **Querétaro**: boom industrial, de las economías de crecimiento más rápido de México
 
 ## Materias integradas (5º semestre)
 - Finanzas Corporativas
@@ -19,52 +18,43 @@ Determinar la mejor ubicación para la próxima sucursal de Costco en México me
 ```text
 costco-expansion-analysis/
 ├── data/
-│   ├── raw/          # Datos brutos de INEGI, CONAPO, etc.
+│   ├── raw/          # Datos brutos de INEGI (no se incluyen en el repositorio)
 │   └── processed/    # Datos limpios listos para análisis
-├── notebooks/        # Análisis Jupyter (exploración, modelos, reportes)
-├── src/              # Scripts Python reutilizables
+├── notebooks/
+│   ├── 01_exploracion_datos.ipynb          # Limpieza de microdatos ENIGH y análisis exploratorio
+│   ├── 02_modelo_econometrico_final.ipynb  # Modelo OLS final y pruebas diagnósticas
+│   ├── 03_extraccion_denue.ipynb           # Descarga del DENUE y matriz espacial oferta-demanda
+│   ├── 03b_inyectar_vehiculos.ipynb        # Agrega parque vehicular (num_auto) desde la ENIGH
+│   ├── 04_modelo_logit.ipynb               # Modelo logit de "mercado probado" por municipio
+│   └── 05_oferta_demanda_monterrey.ipynb   # Oferta vs. demanda en Nuevo León (en curso)
 ├── resultados/
-│   ├── graficos/     # Visualizaciones
-│   └── reportes/     # Reportes finales
+│   └── graficos/     # Visualizaciones
 └── requirements.txt  # Dependencias de Python
 ```
 
-## Variables clave a analizar
-**Demanda:** Población, ingreso per cápita, densidad, competencia
-**Oferta:** Costos de terreno, salarios, infraestructura
-**Macroeconómicas:** PIB regional, tasas de interés, inflación
-**Impacto social:** Empleo, recaudación fiscal, derrama económica
+Los notebooks usan rutas relativas (`../data/...`, `../resultados/...`), así que deben ejecutarse con la carpeta `notebooks/` como directorio de trabajo.
+
+## Variables clave
+- **Demanda:** población, ingreso por hogar, parque vehicular, densidad
+- **Oferta y competencia:** clubes de precios existentes, masa de negocios B2B
+- **Macroeconómicas:** PIB regional, tasas de interés, inflación
+- **Impacto social:** empleo, recaudación fiscal, derrama económica
 
 ## Fuentes de datos
-- INEGI (población, PIB regional, censos económicos)
-- CONAPO (proyecciones demográficas)
-- Banco de México (tasas, crecimiento)
-- Reportes públicos Costco
+- **INEGI (ENIGH 2022 / DENUE):** ingresos por hogar, perfil socioeconómico y densidad de competidores
+- **CONAPO:** proyecciones poblacionales a nivel municipal
+- **Banco de México:** tasas y crecimiento
+- Reportes públicos de Costco
 
-## Autor
+Los datos crudos de la ENIGH deben colocarse en `data/raw/` antes de correr los notebooks 01 y 03b. El notebook 03 descarga el DENUE automáticamente.
+
+## Estado del proyecto
+- **Fase 1, completada:** modelo econométrico de demanda (OLS sobre ENIGH), procesamiento de datos y gráficas diagnósticas.
+- **Fase 2, en curso:** integración de oferta y competencia (DENUE), modelo logit y análisis por ciudad.
+
+## Autores
 **Hugo Cuellar & Valeria Castañeda** | Licenciatura en Economía, Semestre 5
 Universidad Autónoma del Estado de Morelos
 
 ## Licencia
 MIT License
-=======
-# Análisis Econométrico para la Expansión Spacial de Costco en México
-
-Este proyecto desarrolla un **modelo econométrico de predicción de demanda** para determinar la localización espacial óptima de una nueva sucursal de Costco, evaluando tres zonas metropolitanas principales: **Guadalajara, Querétaro y Monterrey**.
-
-## 📊 Estructura del Proyecto
-
-* **`notebooks/`**: 
-  * `01_exploracion_datos.ipynb`: Limpieza, procesamiento de microdatos de la ENIGH/INEGI y análisis exploratorio.
-  * `02_modelo_econometrico_final.ipynb`: Especificación del modelo econométrico final, estimaciones de regresión ($R^2$, significancia estadística) y pruebas diagnósticas.
-* **`resultados/`**: 
-  * Reportes en texto plano del resumen del modelo y visualizaciones de los hallazgos principales (`graficos/`).
-
-## 🛠️ Fuentes de Datos e Indicadores
-* **INEGI (ENIGH / DENUE):** Ingresos por hogar, perfil socioeconómico y densidad de competidores.
-* **CONAPO:** Proyecciones poblacionales a nivel municipal.
-
-## 🚀 Estado del Proyecto
-* **Fase 1:** Completada. Modelo econométrico inicial estandarizado, procesamiento de datos locales y generación de gráficas diagnósticas.
-  
->>>>>>> 6a31e5d2d6787f54bf0a38e7cf3c437c10f4562c
